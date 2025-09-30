@@ -20,13 +20,10 @@ public class Main {
         double pitchWeight = (deltaInpVecA.x * differanceVector.y - differanceVector.x * deltaInpVecA.y);
         pitchWeight /= (deltaInpVecA.x * deltaInpVecB.y - deltaInpVecB.x * deltaInpVecA.y);
 
-        System.out.println(yawWeight);
-        System.out.println(pitchWeight);
-
         double weightedYaw = deltaInpVecA.x * yawWeight + deltaInpVecB.x * pitchWeight;
         double weightedPitch = deltaInpVecA.y * yawWeight + deltaInpVecB.y * pitchWeight;
 
         Vector2D correctionVector = new Vector2D(weightedYaw, weightedPitch);
-        return correctionVector;
+        return inpVector.add(correctionVector);
     }
 }
