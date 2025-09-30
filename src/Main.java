@@ -15,9 +15,9 @@ public class Main {
         Vector2D deltaInpVecA = Derivative.takePartialDerivativeA(new Stuff(), inpVector, delta);
         Vector2D deltaInpVecB = Derivative.takePartialDerivativeB(new Stuff(), inpVector, delta);
 
-        double yawWeight = (deltaInpVecB.x * differanceVector.y + differanceVector.x * deltaInpVecB.y);
+        double yawWeight = (-deltaInpVecB.x * differanceVector.y + differanceVector.x * deltaInpVecB.y);
         yawWeight /= (deltaInpVecA.x * deltaInpVecB.y - deltaInpVecB.x * deltaInpVecA.y);
-        double pitchWeight = (deltaInpVecA.x * differanceVector.y + differanceVector.x * deltaInpVecA.y);
+        double pitchWeight = (deltaInpVecA.x * differanceVector.y - differanceVector.x * deltaInpVecA.y);
         pitchWeight /= (deltaInpVecA.x * deltaInpVecB.y - deltaInpVecB.x * deltaInpVecA.y);
 
         System.out.println(yawWeight);
