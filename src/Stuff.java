@@ -38,7 +38,7 @@ public class Stuff implements Differentiand{
         double pitchComp = -Math.atan(Yf2/Xf2);
         Vector2D outVector = new Vector2D(yawComp, pitchComp);
         outVector.convertToDegrees();
-        System.out.println(outVector);
+//        System.out.println(outVector);
         return outVector;
     }
 }
