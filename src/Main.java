@@ -2,11 +2,13 @@
 public class Main {
     public static void main(String[] args) {
         double delta = 0.0001;
-        Vector2D inpVector = new Vector2D(  1, 1);
+        Vector2D inpVector = new Vector2D(  0, 35);
         Vector2D target = new Vector2D(10, 10);
+        inpVector.convertToRads();
+        target.convertToRads();
 
         Vector2D out = REF(inpVector, target, delta);
-        System.out.println(out);
+//        System.out.println(out);
     }
     public static Vector2D REF(Vector2D inpVector, Vector2D target, double delta){
 

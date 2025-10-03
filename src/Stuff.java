@@ -21,8 +21,8 @@ public class Stuff implements Differentiand{
 
         double M = (S+1)/2.0;
 
-        double Xf1 = Xi + initialTntXOffset * S * windChargeDetonationSurfaceOffset;
-        double Yf1 = Yi + initialArrowYOffset;
+        double Xf1 = Xi + initialTntXOffset + S * windChargeDetonationSurfaceOffset;
+        double Yf1 = Yi + initialTntYOffset;
         double Zf1 = Zi + initialTntZOffset;
 
         double Df = Math.sqrt(Math.pow(Xf1, 2) + Math.pow(Yf1, 2) + Math.pow(Yf1, 2));
@@ -34,9 +34,11 @@ public class Stuff implements Differentiand{
         double Zf2 = Zf1 + initialArrowZOffset/P;
         P = (windChargeExplosionRadius - Df) * Pw;
 
-
         double yawComp = 0;
-        double pitchComp = 0;
-        return new Vector2D(yawComp, pitchComp);
+        double pitchComp = -Math.atan(Yf2/Xf2);
+        Vector2D outVector = new Vector2D(yawComp, pitchComp);
+        outVector.convertToDegrees();
+        System.out.println(outVector);
+        return outVector;
     }
 }

@@ -24,4 +24,12 @@ public class Vector2D {
     public double dotProduct(Vector2D other){
         return this.x * other.x + this.y * other.y;
     }
+    public void convertToRads(){
+        x = x * Math.PI / 180.0;
+        y = y * Math.PI / 180.0;
+    }
+    public void convertToDegrees(){
+        x = x * 180.0 / Math.PI;
+        y = y * 180.0 / Math.PI;
+    }
 }
