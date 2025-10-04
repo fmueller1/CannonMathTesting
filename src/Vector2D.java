@@ -32,4 +32,19 @@ public class Vector2D {
         x = x * 180.0 / Math.PI;
         y = y * 180.0 / Math.PI;
     }
+    public int getQuadrant(){
+        if (x >= 0){
+            if(y >= 0){
+                return 1;
+            } else {
+                return 4;
+            }
+        } else{
+            if(y >= 0){
+                return 2;
+            } else {
+                return 3;
+            }
+        }
+    }
 }
