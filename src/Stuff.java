@@ -34,7 +34,7 @@ public class Stuff implements Differentiand{
         double Zf2 = Zf1 + initialArrowZOffset/P;
         P = (windChargeExplosionRadius - Df) * Pw;
 
-        double yawComp = 0.0001 * in.x;
+        double yawComp = 0;
         double pitchComp = -Math.atan(Yf2/Xf2);
         Vector2D outVector = new Vector2D(yawComp, pitchComp);
         outVector.convertToDegrees();
