@@ -47,4 +47,7 @@ public class Vector2D {
             }
         }
     }
+    public void overflowClamp(double min, double max){
+
+    }
 }

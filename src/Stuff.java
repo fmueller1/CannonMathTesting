@@ -43,7 +43,7 @@ public class Stuff implements Differentiand{
             correctionCoef = 0;
         }
 
-        double yawComp = clamp(0);
+        double yawComp = clamp(Math.atan(-Xf2 / Zf2) + flipYaw);
         double pitchComp = clamp(-Math.atan(Yf2/Xf2) + Math.PI * correctionCoef);
         Vector2D outVector = new Vector2D(yawComp, pitchComp);
         outVector.convertToDegrees();
