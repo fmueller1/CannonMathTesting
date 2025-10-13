@@ -15,6 +15,12 @@ public class Vector2D {
         return "(" + x + ", " + y + ")";
     }
 
+    public double getAngle(){
+        return Math.atan2(y, x);
+    }
+    public double getMagnitude(){
+        return Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
+    }
     public Vector2D add(Vector2D other){
         return new Vector2D(this.x + other.x, this.y + other.y);
     }
