@@ -17,7 +17,9 @@ public class Stuff implements Differentiand{
 
     public Vector2D f(Vector2D in){
 
-        in.x = in.x + Math.PI/2.0 * cannonOrientation;
+        double rotationThingy = in.x + Math.PI/2.0 * cannonOrientation;
+
+        in.x += rotationThingy;
 
         double Xi = flipYaw * distanceToSurface;
         double Yi = distanceToSurface * Math.abs(1.0/Math.cos(in.x)) * Math.tan(-in.y);
@@ -52,6 +54,7 @@ public class Stuff implements Differentiand{
         Vector2D outVector = new Vector2D(yawComp, pitchComp);
         outVector.overflowClamp(-Math.PI, Math.PI);
         outVector.convertToDegrees();
+        in.x -= rotationThingy;
         return outVector;
     }
 
