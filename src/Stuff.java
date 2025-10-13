@@ -18,7 +18,6 @@ public class Stuff implements Differentiand{
     public Vector2D f(Vector2D in){
 
         in.x = in.x + Math.PI/2.0 * cannonOrientation;
-        System.out.println(in.x);
 
         double Xi = flipYaw * distanceToSurface;
         double Yi = distanceToSurface * Math.abs(1.0/Math.cos(in.x)) * Math.tan(-in.y);

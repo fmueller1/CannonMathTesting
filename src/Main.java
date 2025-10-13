@@ -7,6 +7,7 @@ public class Main {
         inpVector.convertToRads();
         target.convertToRads();
 
-        Vector2D out = RREF.reducedRowEchelonForm(inpVector, target, delta);
+        System.out.println(new Stuff().f(inpVector));
+//        System.out.println(RREF.reducedRowEchelonForm(inpVector, target, delta));
     }
 }
