@@ -17,13 +17,7 @@ public class Main {
         Vector2D partialDerivativeB = Derivative.takePartialDerivativeB(new Stuff(), inpVector, delta);
 
         double yawWeight = calcYawWeight(partialDerivativeA, partialDerivativeB, differanceVector);
-        double pitchWeight = (partialDerivativeA.x * differanceVector.y - differanceVector.x * partialDerivativeA.y);
-        double pitchDivisor = (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
-        if(pitchDivisor == 0){
-            pitchWeight = 0;
-        } else {
-            pitchWeight /= pitchDivisor;
-        }
+        double pitchWeight = calcPitchWeight(partialDerivativeA, partialDerivativeB, differanceVector);
 
         double weightedYaw = partialDerivativeA.x * yawWeight + partialDerivativeB.x * pitchWeight;
         double weightedPitch = partialDerivativeA.y * yawWeight + partialDerivativeB.y * pitchWeight;
@@ -47,6 +41,24 @@ public class Main {
     }
 
     public static double calcYawWeightDenominator(Vector2D partialDerivativeA, Vector2D partialDerivativeB){
+        return (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
+    }
+
+    public static double calcPitchWeight(Vector2D partialDerivativeA, Vector2D partialDerivativeB, Vector2D differanceVector){
+        double pitchWeightNumerator = calcPitchWeightNumerator(partialDerivativeA, differanceVector);
+        double pitchWeightDenominator = calcPitchWeightDenominator(partialDerivativeA, partialDerivativeB);
+        if(pitchWeightDenominator == 0){
+            return 0;
+        }
+        double weight = pitchWeightNumerator/pitchWeightDenominator;
+        return weight;
+    }
+
+    public static double calcPitchWeightNumerator(Vector2D partialDerivativeA, Vector2D differanceVector){
+        return (partialDerivativeA.x * differanceVector.y - differanceVector.x * partialDerivativeA.y);
+    }
+
+    public static double calcPitchWeightDenominator(Vector2D partialDerivativeA, Vector2D partialDerivativeB){
         return (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
     }
 }
