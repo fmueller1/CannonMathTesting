@@ -7,9 +7,9 @@ public class Main {
         inpVector.convertToRads();
         target.convertToRads();
 
-        Vector2D out = REF(inpVector, target, delta);
+        Vector2D out = reducedRowEchelonForm(inpVector, target, delta);
     }
-    public static Vector2D REF(Vector2D inpVector, Vector2D target, double delta){
+    public static Vector2D reducedRowEchelonForm(Vector2D inpVector, Vector2D target, double delta){
 
         Vector2D differanceVector = target.subtract(inpVector);
 
@@ -32,8 +32,7 @@ public class Main {
         if(yawWeightDenominator == 0){
             return 0;
         }
-        double weight = yawWeightNumerator/yawWeightDenominator;
-        return weight;
+        return yawWeightNumerator/yawWeightDenominator;
     }
 
     public static double calcYawWeightNumerator(Vector2D partialDerivativeB, Vector2D differanceVector){
@@ -50,8 +49,7 @@ public class Main {
         if(pitchWeightDenominator == 0){
             return 0;
         }
-        double weight = pitchWeightNumerator/pitchWeightDenominator;
-        return weight;
+        return pitchWeightNumerator/pitchWeightDenominator;
     }
 
     public static double calcPitchWeightNumerator(Vector2D partialDerivativeA, Vector2D differanceVector){
