@@ -13,28 +13,40 @@ public class Main {
 
         Vector2D differanceVector = target.subtract(inpVector);
 
-        Vector2D deltaInpVecA = Derivative.takePartialDerivativeA(new Stuff(), inpVector, delta);
-        Vector2D deltaInpVecB = Derivative.takePartialDerivativeB(new Stuff(), inpVector, delta);
+        Vector2D partialDerivativeA = Derivative.takePartialDerivativeA(new Stuff(), inpVector, delta);
+        Vector2D partialDerivativeB = Derivative.takePartialDerivativeB(new Stuff(), inpVector, delta);
 
-        double yawWeight = (-deltaInpVecB.x * differanceVector.y + differanceVector.x * deltaInpVecB.y);
-        double yawDivisor = (deltaInpVecA.x * deltaInpVecB.y - deltaInpVecB.x * deltaInpVecA.y);
-        if(yawDivisor == 0){
-            yawWeight = 0;
-        } else {
-            yawWeight /= yawDivisor;
-        }
-        double pitchWeight = (deltaInpVecA.x * differanceVector.y - differanceVector.x * deltaInpVecA.y);
-        double pitchDivisor = (deltaInpVecA.x * deltaInpVecB.y - deltaInpVecB.x * deltaInpVecA.y);
+        double yawWeight = calcYawWeight(partialDerivativeA, partialDerivativeB, differanceVector);
+        double pitchWeight = (partialDerivativeA.x * differanceVector.y - differanceVector.x * partialDerivativeA.y);
+        double pitchDivisor = (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
         if(pitchDivisor == 0){
             pitchWeight = 0;
         } else {
             pitchWeight /= pitchDivisor;
         }
 
-        double weightedYaw = deltaInpVecA.x * yawWeight + deltaInpVecB.x * pitchWeight;
-        double weightedPitch = deltaInpVecA.y * yawWeight + deltaInpVecB.y * pitchWeight;
+        double weightedYaw = partialDerivativeA.x * yawWeight + partialDerivativeB.x * pitchWeight;
+        double weightedPitch = partialDerivativeA.y * yawWeight + partialDerivativeB.y * pitchWeight;
 
         Vector2D correctionVector = new Vector2D(weightedYaw, weightedPitch);
         return inpVector.add(correctionVector);
+    }
+
+    public static double calcYawWeight(Vector2D partialDerivativeA, Vector2D partialDerivativeB, Vector2D differanceVector){
+        double yawWeightNumerator = calcYawWeightNumerator(partialDerivativeB, differanceVector);
+        double yawWeightDenominator = calcYawWeightDenominator(partialDerivativeA, partialDerivativeB);
+        if(yawWeightDenominator == 0){
+            return 0;
+        }
+        double weight = yawWeightNumerator/yawWeightDenominator;
+        return weight;
+    }
+
+    public static double calcYawWeightNumerator(Vector2D partialDerivativeB, Vector2D differanceVector){
+        return (-partialDerivativeB.x * differanceVector.y + differanceVector.x * partialDerivativeB.y);
+    }
+
+    public static double calcYawWeightDenominator(Vector2D partialDerivativeA, Vector2D partialDerivativeB){
+        return (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
     }
 }
