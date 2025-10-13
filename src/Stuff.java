@@ -13,8 +13,12 @@ public class Stuff implements Differentiand{
     double flipYaw = 1;
     double Pw = 1;
     double correctionCoef = 0;
+    double cannonOrientation = 1;
 
     public Vector2D f(Vector2D in){
+
+        in.x = in.x + Math.PI/2.0 * cannonOrientation;
+        System.out.println(in.x);
 
         double Xi = flipYaw * distanceToSurface;
         double Yi = distanceToSurface * Math.abs(1.0/Math.cos(in.x)) * Math.tan(-in.y);
@@ -43,11 +47,16 @@ public class Stuff implements Differentiand{
             correctionCoef = 0;
         }
 
+
         double yawComp = Math.atan(-Xf2 / Zf2) + flipYaw;
         double pitchComp = -Math.atan(Yf2/Xf2) + Math.PI * correctionCoef;
         Vector2D outVector = new Vector2D(yawComp, pitchComp);
         outVector.overflowClamp(-Math.PI, Math.PI);
         outVector.convertToDegrees();
         return outVector;
+    }
+
+    double clamp(double x, double min, double max){
+        return (x-min) % (max-min) + min;
     }
 }
