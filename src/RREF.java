@@ -18,36 +18,20 @@ public class RREF {
     }
 
     static double calcYawWeight(Vector2D partialDerivativeA, Vector2D partialDerivativeB, Vector2D differanceVector){
-        double yawWeightNumerator = calcYawWeightNumerator(partialDerivativeB, differanceVector);
-        double yawWeightDenominator = calcYawWeightDenominator(partialDerivativeA, partialDerivativeB);
+        double yawWeightNumerator = (-partialDerivativeB.x * differanceVector.y + differanceVector.x * partialDerivativeB.y);
+        double yawWeightDenominator = (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
         if(yawWeightDenominator == 0){
             return 0;
         }
         return yawWeightNumerator/yawWeightDenominator;
     }
 
-    static double calcYawWeightNumerator(Vector2D partialDerivativeB, Vector2D differanceVector){
-        return (-partialDerivativeB.x * differanceVector.y + differanceVector.x * partialDerivativeB.y);
-    }
-
-    static double calcYawWeightDenominator(Vector2D partialDerivativeA, Vector2D partialDerivativeB){
-        return (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
-    }
-
     static double calcPitchWeight(Vector2D partialDerivativeA, Vector2D partialDerivativeB, Vector2D differanceVector){
-        double pitchWeightNumerator = calcPitchWeightNumerator(partialDerivativeA, differanceVector);
-        double pitchWeightDenominator = calcPitchWeightDenominator(partialDerivativeA, partialDerivativeB);
+        double pitchWeightNumerator = (partialDerivativeA.x * differanceVector.y - differanceVector.x * partialDerivativeA.y);
+        double pitchWeightDenominator = (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
         if(pitchWeightDenominator == 0){
             return 0;
         }
         return pitchWeightNumerator/pitchWeightDenominator;
-    }
-
-    static double calcPitchWeightNumerator(Vector2D partialDerivativeA, Vector2D differanceVector){
-        return (partialDerivativeA.x * differanceVector.y - differanceVector.x * partialDerivativeA.y);
-    }
-
-    static double calcPitchWeightDenominator(Vector2D partialDerivativeA, Vector2D partialDerivativeB){
-        return (partialDerivativeA.x * partialDerivativeB.y - partialDerivativeB.x * partialDerivativeA.y);
     }
 }
