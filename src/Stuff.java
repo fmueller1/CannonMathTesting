@@ -50,10 +50,6 @@ public class Stuff implements Differentiand{
         return val + Math.PI/2 * rot;
     }
 
-    double getCannonRelativeYaw(double val){
-        return rotateAxis(val, cannonOrientation);
-    }
-
     double getDirrectionOfCollisionSurface(double yaw){
         if (yaw > 0){
             return -1;
