@@ -19,11 +19,11 @@ public class MCWorldModel implements Differentiand{
 
         double XWindChargeImpact = directionOfCollisionSurface* surfaceDistance;
         double YWindChargeImpact = surfaceDistance * Math.abs(1.0/Math.cos(relativeYaw))*Math.tan(-in.y);
-        double ZWindCharfeImpact = surfaceDistance * Math.tan(relativeYaw);
+        double ZWindChargeImpact = surfaceDistance * Math.tan(relativeYaw);
 
         double Xf1 = XWindChargeImpact + initialTNTXOffset +directionOfCollisionSurface* explosionOffsetFromSurface;
         double Yf1 = YWindChargeImpact + initialTNTYOffset;
-        double Zf1 = ZWindCharfeImpact + initialTNTZOffset;
+        double Zf1 = ZWindChargeImpact + initialTNTZOffset;
 
         double windChargeTntDistanceThingy = pythagoreanTheorem(Xf1, Yf1, Zf1);
 
