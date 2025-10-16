@@ -1,11 +1,11 @@
 
 public class RREF {
-    public static Vector2D reducedRowEchelonForm(Vector2D inpVector, Vector2D target, double delta){
+    public static Vector2D reducedRowEchelonForm(Vector2D inpVector, Vector2D target, Differentiand Model, double delta){
 
         Vector2D differanceVector = target.subtract(inpVector);
 
-        Vector2D partialDerivativeA = Derivative.takePartialDerivativeA(new MCCannonModel(), inpVector, delta);
-        Vector2D partialDerivativeB = Derivative.takePartialDerivativeB(new MCCannonModel(), inpVector, delta);
+        Vector2D partialDerivativeA = Derivative.takePartialDerivativeA(Model, inpVector, delta);
+        Vector2D partialDerivativeB = Derivative.takePartialDerivativeB(Model, inpVector, delta);
 
         double yawWeight = calcYawWeight(partialDerivativeA, partialDerivativeB, differanceVector);
         double pitchWeight = calcPitchWeight(partialDerivativeA, partialDerivativeB, differanceVector);

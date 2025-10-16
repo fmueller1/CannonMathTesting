@@ -8,6 +8,6 @@ public class Main {
         target.convertToRads();
 
         System.out.println(new MCCannonModel().f(inpVector));
-//        System.out.println(RREF.reducedRowEchelonForm(inpVector, target, delta));
+        System.out.println(RREF.reducedRowEchelonForm(inpVector, target, new MCCannonModel(), delta));
     }
 }
