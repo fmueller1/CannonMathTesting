@@ -1,10 +1,10 @@
 public class MCWorldModel implements Differentiand{
 
     int cannonOrientation = 1;
-    double surfaceDistance = 0.375; // x distance from surface
-    double windChargeRange = 1.1; //
-    double totalWindChargePower = 1; // wind-charge power
-    double explosionOffsetFromSurface = -0.25; //
+    double surfaceDistance = 0.375;
+    double windChargeRange = 1.1;
+    double totalWindChargePower = 1;
+    double explosionOffsetFromSurface = -0.25;
     double initialTNTXOffset = 0;
     double initialTNTYOffset = 0.25;
     double initialTNTZOffset = 0;
