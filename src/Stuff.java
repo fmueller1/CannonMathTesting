@@ -21,9 +21,9 @@ public class Stuff implements Differentiand{
         double Yi = surfaceDistance * Math.abs(1.0/Math.cos(relativeYaw))*Math.tan(-in.y);
         double Zi = surfaceDistance * Math.tan(relativeYaw);
 
-        double Xf1 = Xi+ initialTNTXOffset +directionOfCollisionSurface*Os;
-        double Yf1 = Yi+ initialTNTYOffset;
-        double Zf1 = Zi+ initialTNTZOffset;
+        double Xf1 = Xi + initialTNTXOffset +directionOfCollisionSurface*Os;
+        double Yf1 = Yi + initialTNTYOffset;
+        double Zf1 = Zi + initialTNTZOffset;
 
         double Df = pythagoreanTheorem(Xf1, Yf1, Zf1);
 
