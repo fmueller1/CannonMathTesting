@@ -30,8 +30,8 @@ public class MCWorldModel implements Differentiand{
         double effectiveWindChargePower = (windChargeRange - windChargeTntDistanceThingy)* totalWindChargePower; // effective wind-charge power
 
         double Xf2 = (effectiveWindChargePower*Xf1+initialArrowXOffset)/effectiveWindChargePower;
-        double Yf2 = (effectiveWindChargePower*Yf1+initialArrowXOffset)/effectiveWindChargePower;
-        double Zf2 = (effectiveWindChargePower*Zf1+initialArrowXOffset)/effectiveWindChargePower;
+        double Yf2 = (effectiveWindChargePower*Yf1+initialArrowYOffset)/effectiveWindChargePower;
+        double Zf2 = (effectiveWindChargePower*Zf1+initialArrowZOffset)/effectiveWindChargePower;
 
         System.out.println(Xf2);
         System.out.println(Yf2);
