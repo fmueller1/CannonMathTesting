@@ -1,64 +1,47 @@
 public class Stuff implements Differentiand{
 
-    double distanceToSurface = 0.375;
-    double windChargeExplosionRadius = 1;
-    double windChargeExplosionPower = 1;
-    double windChargeDetonationSurfaceOffset = -0.25;
-    double initialTntXOffset = 0;
-    double initialTntYOffset = 0.25;
-    double initialTntZOffset = 0;
-    double initialArrowXOffset = 0;
-    double initialArrowYOffset = 0;
-    double initialArrowZOffset = 0;
-    double flipYaw = 1;
+    int cannonRotation = 1;
+    double Dsx = 0.375;
+    double Rw = 1.1;
     double Pw = 1;
-    double correctionCoef = 0;
-    double cannonOrientation = 1;
+    double Os = -0.25;
+    double Oix = 0;
+    double Oiy = 0.25;
+    double Oiz = 0;
+    double Xa = 0;
+    double Ya = 0;
+    double Za = 0;
 
-    public Vector2D f(Vector2D in){
+    public Vector2D f(Vector2D in) {
 
-        double rotationThingy = in.x + Math.PI/2.0 * cannonOrientation;
+        double rotatedYaw = rotateAxis(in.x, cannonRotation);
+        double directionOfCollisionSurface = -Math.abs(Math.sin(rotateAxis(in.x, cannonRotation-1)))/Math.sin(rotateAxis(in.x, cannonRotation-1));
 
-        in.x += rotationThingy;
+        double Xi = directionOfCollisionSurface*Dsx;
+        double Yi = Dsx * Math.abs(1.0/Math.cos(rotatedYaw))*Math.tan(-in.y);
+        double Zi = Dsx * Math.tan(rotatedYaw);
 
-        double Xi = flipYaw * distanceToSurface;
-        double Yi = distanceToSurface * Math.abs(1.0/Math.cos(in.x)) * Math.tan(-in.y);
-        double Zi = distanceToSurface * Math.tan(in.x);
+        double Xf1 = Xi+Oix+directionOfCollisionSurface*Os;
+        double Yf1 = Yi+Oiy;
+        double Zf1 = Zi+Oiz;
 
-        double Xf1 = Xi + initialTntXOffset + flipYaw * windChargeDetonationSurfaceOffset;
-        double Yf1 = Yi + initialTntYOffset;
-        double Zf1 = Zi + initialTntZOffset;
+        double Df = pythagoreanTheorem(Xf1, Yf1, Zf1);
 
-        double Df = Math.sqrt(Math.pow(Xf1, 2) + Math.pow(Yf1, 2) + Math.pow(Yf1, 2));
+        double P = (Rw-Df)*Pw;
 
-        double P = (windChargeExplosionRadius - Df)/Pw;
+        double Xf2=Xf1+Xa/P;
+        double Yf2=Yf1+Ya/P;
+        double Zf2=Zf1+Ya/P;
 
-        double Xf2 = Xf1 + initialArrowXOffset/P;
-        double Yf2 = Yf1 + initialArrowYOffset/P;
-        double Zf2 = Zf1 + initialArrowZOffset/P;
-        P = (windChargeExplosionRadius - Df) * Pw;
-
-        Vector2D tempVec = new Vector2D(Zf2, Xf2);
-        if(tempVec.getQuadrant() == 2){
-            correctionCoef = 1;
-        }
-        else if(tempVec.getQuadrant() == 3){
-            correctionCoef = -1;
-        } else{
-            correctionCoef = 0;
-        }
-
-
-        double yawComp = Math.atan(-Xf2 / Zf2) + flipYaw;
-        double pitchComp = -Math.atan(Yf2/Xf2) + Math.PI * correctionCoef;
-        Vector2D outVector = new Vector2D(yawComp, pitchComp);
-        outVector.overflowClamp(-Math.PI, Math.PI);
-        outVector.convertToDegrees();
-        in.x -= rotationThingy;
-        return outVector;
+        double yawComp = 0;
+        double pitchComp = 0;
+        return new Vector2D(yawComp, pitchComp);
     }
 
-    double clamp(double x, double min, double max){
-        return (x-min) % (max-min) + min;
+    double pythagoreanTheorem(double a, double b, double c){
+        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
+    }
+    double rotateAxis(double val, int rot){
+        return val + Math.PI/2 * rot;
     }
 }
