@@ -1,4 +1,4 @@
-public class MCWorldModel implements Differentiand{
+public class MCCannondModel implements Differentiand{
 
     int cannonOrientation = 1;
     double surfaceDistance = 0.375;
