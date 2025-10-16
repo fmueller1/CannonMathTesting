@@ -1,4 +1,4 @@
-public class MCCannondModel implements Differentiand{
+public class MCCannonModel implements Differentiand{
 
     int cannonOrientation = 1;
     double surfaceDistance = 0.375;
