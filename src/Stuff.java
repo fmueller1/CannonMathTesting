@@ -4,7 +4,7 @@ public class Stuff implements Differentiand{
     double surfaceDistance = 0.375; // x distance from surface
     double windChargeRange = 1.1; //
     double totalWindChargePower = 1; // wind-charge power
-    double Os = -0.25; //
+    double explosionOffsetFromSurface = -0.25; //
     double initialTNTXOffset = 0;
     double initialTNTYOffset = 0.25;
     double initialTNTZOffset = 0;
@@ -15,23 +15,23 @@ public class Stuff implements Differentiand{
     public Vector2D f(Vector2D in) {
 
         double relativeYaw = rotateAxis(in.x, cannonOrientation);
-        double directionOfCollisionSurface = getDirrectionOfCollisionSurface(relativeYaw);
+        double directionOfCollisionSurface = getDirectionOfCollisionSurface(relativeYaw);
 
         double Xi = directionOfCollisionSurface* surfaceDistance;
         double Yi = surfaceDistance * Math.abs(1.0/Math.cos(relativeYaw))*Math.tan(-in.y);
         double Zi = surfaceDistance * Math.tan(relativeYaw);
 
-        double Xf1 = Xi + initialTNTXOffset +directionOfCollisionSurface*Os;
+        double Xf1 = Xi + initialTNTXOffset +directionOfCollisionSurface* explosionOffsetFromSurface;
         double Yf1 = Yi + initialTNTYOffset;
         double Zf1 = Zi + initialTNTZOffset;
 
-        double Df = pythagoreanTheorem(Xf1, Yf1, Zf1);
+        double windChargeTntDistanceThingy = pythagoreanTheorem(Xf1, Yf1, Zf1);
 
-        double P = (windChargeRange -Df)* totalWindChargePower; // effective wind-charge power
+        double effectiveWindChargePower = (windChargeRange - windChargeTntDistanceThingy)* totalWindChargePower; // effective wind-charge power
 
-        double Xf2=Xf1+ initialArrowXOffset /P;
-        double Yf2=Yf1+ initialArrowYOffset /P;
-        double Zf2=Zf1+ initialArrowYOffset /P;
+        double Xf2 = (effectiveWindChargePower*Xf1+initialArrowXOffset)/effectiveWindChargePower;
+        double Yf2 = (effectiveWindChargePower*Yf1+initialArrowXOffset)/effectiveWindChargePower;
+        double Zf2 = (effectiveWindChargePower*Zf1+initialArrowXOffset)/effectiveWindChargePower;
 
         System.out.println(Xf2);
         System.out.println(Yf2);
@@ -50,7 +50,7 @@ public class Stuff implements Differentiand{
         return val + Math.PI/2 * rot;
     }
 
-    double getDirrectionOfCollisionSurface(double yaw){
+    double getDirectionOfCollisionSurface(double yaw){
         if (yaw > 0){
             return -1;
         }
