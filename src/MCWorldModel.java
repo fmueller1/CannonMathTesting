@@ -1,4 +1,4 @@
-public class Stuff implements Differentiand{
+public class MCWorldModel implements Differentiand{
 
     int cannonOrientation = 1;
     double surfaceDistance = 0.375; // x distance from surface

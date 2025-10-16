@@ -7,7 +7,7 @@ public class Main {
         inpVector.convertToRads();
         target.convertToRads();
 
-        System.out.println(new Stuff().f(inpVector));
+        System.out.println(new MCWorldModel().f(inpVector));
 //        System.out.println(RREF.reducedRowEchelonForm(inpVector, target, delta));
     }
 }

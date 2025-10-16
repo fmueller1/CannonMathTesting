@@ -4,8 +4,8 @@ public class RREF {
 
         Vector2D differanceVector = target.subtract(inpVector);
 
-        Vector2D partialDerivativeA = Derivative.takePartialDerivativeA(new Stuff(), inpVector, delta);
-        Vector2D partialDerivativeB = Derivative.takePartialDerivativeB(new Stuff(), inpVector, delta);
+        Vector2D partialDerivativeA = Derivative.takePartialDerivativeA(new MCWorldModel(), inpVector, delta);
+        Vector2D partialDerivativeB = Derivative.takePartialDerivativeB(new MCWorldModel(), inpVector, delta);
 
         double yawWeight = calcYawWeight(partialDerivativeA, partialDerivativeB, differanceVector);
         double pitchWeight = calcPitchWeight(partialDerivativeA, partialDerivativeB, differanceVector);
