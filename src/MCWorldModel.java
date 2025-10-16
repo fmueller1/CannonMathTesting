@@ -27,7 +27,7 @@ public class MCWorldModel implements Differentiand{
 
         double windChargeTntDistanceThingy = pythagoreanTheorem(Xf1, Yf1, Zf1);
 
-        double effectiveWindChargePower = (windChargeRange - windChargeTntDistanceThingy)* totalWindChargePower; // effective wind-charge power
+        double effectiveWindChargePower = (windChargeRange - windChargeTntDistanceThingy)* totalWindChargePower;
 
         double Xf2 = (effectiveWindChargePower*Xf1+initialArrowXOffset)/effectiveWindChargePower;
         double Yf2 = (effectiveWindChargePower*Yf1+initialArrowYOffset)/effectiveWindChargePower;
