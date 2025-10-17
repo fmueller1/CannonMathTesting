@@ -1,5 +1,5 @@
 
-public class RREF {
+public class Meth {
     public static Vector2D reducedRowEchelonForm(Vector2D inpVector, Vector2D target, Differentiand Model, double delta){
 
         Vector2D differanceVector = target.subtract(inpVector);
