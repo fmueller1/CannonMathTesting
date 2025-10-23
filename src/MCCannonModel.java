@@ -12,7 +12,7 @@ public class MCCannonModel implements Differentiand{
     double initialArrowYOffset = 0;
     double initialArrowZOffset = 0;
 
-    public Vector2D f(Vector2D in) {
+    public Vector2D f(final Vector2D in) {
 
         double relativeYaw = rotateAxis(in.x, cannonOrientation);
         double directionOfCollisionSurface = getDirectionOfCollisionSurface(relativeYaw);
