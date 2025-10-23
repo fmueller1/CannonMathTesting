@@ -3,26 +3,26 @@ public class Meth {
 
     final static double acceptableError = 0.1;
 
-    public static Vector2D targetInput(Vector2D inpVector, Vector2D target, Differentiand Model, double delta){
-        int iterations = 10;
-        Vector2D out = inpVector;
+    public static Vector2D targetInput(Vector2D target, Differentiand Model, double delta){
+        long iterations = 100000;
+        Vector2D out = target;
         for(int i = 0; i < iterations; i++){
             Vector2D error = target.subtract(Model.f(out));
             if(error.getMagnitude() < acceptableError){
                 return out;
             }
-            out = aproxTargetInput(out, target, Model, delta);
+            out = aproxTargetInput(out, target, Model);
         }
         return out;
     }
 
 
-    public static Vector2D aproxTargetInput(Vector2D inpVector, Vector2D target, Differentiand Model, double delta){
+    public static Vector2D aproxTargetInput(Vector2D inpVector, Vector2D target, Differentiand Model){
 
         Vector2D differanceVector = target.subtract(Model.f(inpVector));
 
-        Vector2D partialDerivativeY = Derivative.takePartialDerivativeA(Model, inpVector, delta);
-        Vector2D partialDerivativeP = Derivative.takePartialDerivativeB(Model, inpVector, delta);
+        Vector2D partialDerivativeY = Derivative.takePartialDerivativeA(Model, inpVector);
+        Vector2D partialDerivativeP = Derivative.takePartialDerivativeB(Model, inpVector);
 
         double yawCorrection = calcYawCorrection(partialDerivativeY, partialDerivativeP, differanceVector);
         double pitchCorrection = calcPitchCorrection(partialDerivativeY, partialDerivativeP, differanceVector);
