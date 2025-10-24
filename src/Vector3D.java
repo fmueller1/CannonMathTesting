@@ -19,8 +19,8 @@ public class Vector3D {
     }
 
     public Vector2D getPitchYaw(){
-        double yaw = Math.atan2(x, Math.sqrt(Math.pow(z,2)+Math.pow(y,2)));
-        double pitch = y/this.getMagnitude();
+        double yaw = Math.atan2(y, x);
+        double pitch = Math.atan2(z, x);
         return new Vector2D(yaw, pitch);
     }
     public double getMagnitude(){
