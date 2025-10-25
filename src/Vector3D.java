@@ -18,7 +18,7 @@ public class Vector3D {
         return "(" + x + ", " + y + ", " + z + ")";
     }
 
-    public Vector2D getPitchYaw(){
+    public Vector2D cartesianToSpherical(){
         double yaw = Math.atan2(y, x);
         double pitch = Math.atan2(z, x);
         return new Vector2D(yaw, pitch);
