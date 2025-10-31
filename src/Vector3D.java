@@ -19,7 +19,7 @@ public class Vector3D {
     }
 
     public Vector2D cartesianToBullshit(){
-        double r1 = Math.sqrt(x*x+y*y);
+        double r1 = Math.sqrt(x*x+z*z);
         double yaw = Math.atan2(-x, z);
         double pitch = Math.atan2(-y, r1);
         return new Vector2D(yaw, pitch);

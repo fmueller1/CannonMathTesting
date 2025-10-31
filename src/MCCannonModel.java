@@ -1,16 +1,16 @@
 public class MCCannonModel implements Differentiand{
 
-    int cannonOrientation = 1;
-    double surfaceDistance = 0.375;
-    double windChargeRange = 1.1;
-    double totalWindChargePower = 1;
-    double explosionOffsetFromSurface = -0.25;
-    double initialTNTXOffset = 0;
-    double initialTNTYOffset = 0.25;
-    double initialTNTZOffset = 0;
-    double initialArrowXOffset = 0;
-    double initialArrowYOffset = 0;
-    double initialArrowZOffset = 0;
+    final int cannonOrientation = 1;
+    final double surfaceDistance = 0.375;
+    final double windChargeRange = 1.1;
+    final double totalWindChargePower = 1;
+    final double explosionOffsetFromSurface = -0.25;
+    final double initialTNTXOffset = 0;
+    final double initialTNTYOffset = 0.25;
+    final double initialTNTZOffset = 0;
+    final double initialArrowXOffset = 0;
+    final double initialArrowYOffset = 0;
+    final double initialArrowZOffset = 0;
 
     public Vector2D f(final Vector2D in) {
 

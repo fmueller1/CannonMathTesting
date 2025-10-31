@@ -10,8 +10,9 @@ public class Main {
 //    }
 
     public static void main(String[] args){
-        Vector3D vec = new Vector3D(1, 1, 1);
-        Vector2D py = vec.cartesianToBullshit();
+        Vector2D vec = new Vector2D(-90, 33.7);
+        vec.convertToRads();
+        Vector2D py = new MCCannonModel().f(vec);
         py.convertToDegrees();
         System.out.println(py);
     }

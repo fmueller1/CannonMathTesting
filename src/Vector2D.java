@@ -62,7 +62,7 @@ public class Vector2D {
         double yProjected = Math.cos(y);
         double cartiseanX = -m * yProjected * Math.sin(x);
         double cartiseanZ = m * yProjected * Math.cos(x);
-        double cartiseanY = m * Math.sin(y);
+        double cartiseanY = -m * Math.sin(y);
         return new Vector3D(cartiseanX,cartiseanY,cartiseanZ);
     }
 }
