@@ -18,9 +18,10 @@ public class Vector3D {
         return "(" + x + ", " + y + ", " + z + ")";
     }
 
-    public Vector2D cartesianToSpherical(){
-        double yaw = Math.atan2(y, x);
-        double pitch = Math.atan2(z, x);
+    public Vector2D cartesianToBullshit(){
+        double r1 = Math.sqrt(x*x+y*y);
+        double yaw = Math.atan2(-x, z);
+        double pitch = Math.atan2(-y, r1);
         return new Vector2D(yaw, pitch);
     }
     public double getMagnitude(){

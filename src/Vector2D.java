@@ -57,13 +57,12 @@ public class Vector2D {
         x = (x-min) % (max-min) + min;
         y = (y-min) % (max-min) + min;
     }
-    public Vector3D sphericalToCartesian(){
+    public Vector3D bullshitToCartesian(){
         double m = this.getMagnitude();
-        double zProjected = Math.sin(x);
-        double cartiseanX = m * zProjected * Math.cos(y);
-        double cartiseanY = m * zProjected * Math.sin(y);
-        double cartiseanZ = m * Math.cos(y);
+        double yProjected = Math.cos(y);
+        double cartiseanX = -m * yProjected * Math.sin(x);
+        double cartiseanZ = m * yProjected * Math.cos(x);
+        double cartiseanY = m * Math.sin(y);
         return new Vector3D(cartiseanX,cartiseanY,cartiseanZ);
-
     }
 }

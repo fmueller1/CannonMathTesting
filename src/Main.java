@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args){
         Vector3D vec = new Vector3D(1, 1, 1);
-        Vector2D py = vec.cartesianToSpherical();
+        Vector2D py = vec.cartesianToBullshit();
         py.convertToDegrees();
         System.out.println(py);
     }
