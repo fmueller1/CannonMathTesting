@@ -33,13 +33,11 @@ public class MCCannonModel implements Differentiand{
         double Yf2 = (effectiveWindChargePower * Yf1 + initialArrowYOffset) / effectiveWindChargePower;
         double Zf2 = (effectiveWindChargePower * Zf1 + initialArrowZOffset) / effectiveWindChargePower;
 
-        System.out.println(Xf2);
-        System.out.println(Yf2);
-        System.out.println(Zf2);
+//        System.out.println(Xf2);
+//        System.out.println(Yf2);
+//        System.out.println(Zf2);
 
-        double yawComp = 0;
-        double pitchComp = 0;
-        return new Vector2D(yawComp, pitchComp);
+        return new Vector3D(Xf2, Yf2, Zf2).cartesianToBullshit();
     }
 
     double pythagoreanTheorem(double a, double b, double c){
