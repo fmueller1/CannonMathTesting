@@ -1,10 +1,10 @@
 
 public class Meth {
 
-    final static double acceptableError = 0.0001;
+    final static double acceptableError = 0.00000000001;
 
     public static Vector2D targetInput(Vector2D target, Differentiand Model){
-        long iterations = 10;
+        long iterations = 1000000000;
         Vector2D out = target;
         for(int i = 0; i < iterations; i++){
             Vector2D error = target.subtract(Model.f(out));
