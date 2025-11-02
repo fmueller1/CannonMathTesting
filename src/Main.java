@@ -1,19 +1,9 @@
 
 public class Main {
-//    public static void main(String[] args) {
-//        double delta = 0.0001;
-//        Vector2D target = new Vector2D(90, 90);
-//        target.convertToRads();
-//        double yaw = Meth.calcYawCorrection(new Vector2D(-1,3), new Vector2D(1,2), new Vector2D(1,10));
-//        double pitch = Meth.calcPitchCorrection(new Vector2D(-1,3), new Vector2D(1,2), new Vector2D(1,10));
-//        System.out.println(new Vector2D(yaw, pitch));
-//    }
-
     public static void main(String[] args){
-        Vector2D vec = new Vector2D(-90, 33.7);
+        MCCannonModel mccm = new MCCannonModel();
+        Vector2D vec = new Vector2D(-90, 0);
         vec.convertToRads();
-        Vector2D py = new MCCannonModel().f(vec);
-        py.convertToDegrees();
-        System.out.println(py);
+        System.out.println(Meth.targetInput(vec, mccm));
     }
 }

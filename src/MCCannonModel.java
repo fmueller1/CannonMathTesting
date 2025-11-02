@@ -49,9 +49,9 @@ public class MCCannonModel implements Differentiand{
     }
 
     double getDirectionOfCollisionSurface(double yaw){
-        if (yaw > 0){
-            return -1;
+        if (yaw < Math.PI/2){
+            return 1;
         }
-        return 1;
+        return -1;
     }
 }
