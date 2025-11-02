@@ -1,10 +1,10 @@
 
 public class Meth {
 
-    final static double acceptableError = 0.1;
+    final static double acceptableError = 0.0001;
 
     public static Vector2D targetInput(Vector2D target, Differentiand Model){
-        long iterations = 100;
+        long iterations = 10;
         Vector2D out = target;
         for(int i = 0; i < iterations; i++){
             Vector2D error = target.subtract(Model.f(out));
@@ -28,7 +28,6 @@ public class Meth {
         double pitchCorrection = calcPitchCorrection(partialDerivativeY, partialDerivativeP, differanceVector);
 
         Vector2D correctionVector = new Vector2D(yawCorrection, pitchCorrection);
-        System.out.println(correctionVector);
         if(correctionVector.getMagnitude() > Math.PI/6){
             double angle = correctionVector.getAngle();
             correctionVector = new Vector2D(Math.PI/6*Math.cos(angle), Math.PI/6*Math.sin(angle));
